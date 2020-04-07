@@ -1,4 +1,4 @@
-<p>
+<!-- <p>
   Lista de Eventos!
 </p>
 <div *ngFor = "let evento of eventos">
@@ -8,7 +8,47 @@
   <br>
   Local: {{evento.local}}
   <hr>
-</div>
+</div> -->
+
+<form class="form-inline">
+  <div class="form-group mb-2">
+    <input type="text" class="formm-contorl mr-2" placeholder="buscar">
+    <button class="btn btn-outline-success">buscar</button>
+  </div>
+</form>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Tema</th>
+      <th>Local</th>
+      <th>Data</th>
+      <th>Qtd Pessoas</th>
+      <th>Lote</th>
+      <th>Opções</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let evento of eventos">
+      <td>{{evento.eventoid}}</td>
+      <td>{{evento.tema}}</td>
+      <td>{{evento.local}}</td>
+      <td>{{evento.dataEvento}}</td>
+      <td>{{evento.qtdPessoas}}</td>
+      <td>{{evento.lote}}</td>
+      <td>
+        <button class="btn btn-success"></button>
+        <button class="btn btn-danger"></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
 
 
 
