@@ -17,9 +17,15 @@
   </div>
 </form>
 <table class="table table-striped">
-  <thead class="thead-dark">
+  <thead class="thead-light">
     <tr>
-      <th>#</th>
+      <th>
+        <button class="btn btn-outline-primary"
+        (click)="alterarImagem()">
+          Mostrar Imagem
+        </button>
+      </th>
+      <th>Id</th>
       <th>Tema</th>
       <th>Local</th>
       <th>Data</th>
@@ -28,8 +34,14 @@
       <th>Opções</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf="eventos && eventos.length">
     <tr *ngFor="let evento of eventos">
+      <td>
+        <img *ngIf="mostrarImagem"
+             src="http://localhost:5000/img/{{evento.imagemUrl}}"
+             [style.width.px] = "imagemLargura"
+             [style.margin.px] = "imagemMargem" >
+      </td>
       <td>{{evento.eventoid}}</td>
       <td>{{evento.tema}}</td>
       <td>{{evento.local}}</td>
@@ -42,6 +54,15 @@
       </td>
     </tr>
   </tbody>
+  <tfoot *ngIf="!eventos.length">
+    <tr>
+      <td colspan="7" class="text-center">
+        <h4>
+          Nenhum evento encontrado
+        </h4>
+      </td>
+    </tr>
+  </tfoot>
 </table>
 
 

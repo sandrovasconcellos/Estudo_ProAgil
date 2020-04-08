@@ -7,8 +7,31 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./eventos.component.css']
 })
 export class EventosComponent implements OnInit {
+  eventos: any = [];
+  imagemLargura = 50;
+  imagemMargem = 2;
+  mostrarImagem = false;
 
-  // eventos: any = [
+  constructor(private http: HttpClient) { }
+
+  ngOnInit() {
+    this.getEventos();
+  }
+
+  alterarImagem(){
+    this.mostrarImagem = !this.mostrarImagem;
+  }
+
+  getEventos() {
+    this.http.get('http://localhost:5000/api/WeatherForecast').subscribe(response => {
+      this.eventos = response;
+    }, error => {
+      console.log(error);
+    });
+  }
+}
+
+// eventos: any = [
   //   {
   //     EventoId: 1,
   //     Tema: 'Angular',
@@ -24,21 +47,4 @@ export class EventosComponent implements OnInit {
   //     Tema: 'Angular .NET',
   //     Local: 'Rio de Janeiro',
   //   }
-  // ];
-
-  eventos: any;
-  constructor(private http: HttpClient) { }
-
-  ngOnInit() {
-    this.getEventos();
-  }
-
-  getEventos() {
-    this.http.get('http://localhost:5000/api/WeatherForecast').subscribe(response => {
-      this.eventos = response;
-    }, error => {
-      console.log(error);
-    });
-  }
-}
-
+  // ]
