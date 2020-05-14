@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using ProAgil.WebAPI.Data;
-using ProAgil.WebAPI.Model;
+using ProAgil.Repository;
 
 namespace ProAgil.WebAPI.Controllers
 {
@@ -17,11 +12,10 @@ namespace ProAgil.WebAPI.Controllers
     public class WeatherForecastController : ControllerBase
     {
         //propriedade
-        public DataContext _context { get; }
-
+        public ProAgilContext _context { get; }
         //injeção de dependencia
         //construtor
-        public WeatherForecastController(DataContext context)
+        public WeatherForecastController(ProAgilContext context)
         {
             _context = context;
         }        
@@ -49,7 +43,7 @@ namespace ProAgil.WebAPI.Controllers
         {
              try
             {
-                var results = await _context.Eventos.FirstOrDefaultAsync(x => x.Eventoid == id);
+                var results = await _context.Eventos.FirstOrDefaultAsync(x => x.Id == id);
                 //ok retorna o status code de 2000
                 return Ok(results); 
             }
