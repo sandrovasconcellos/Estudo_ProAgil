@@ -67,12 +67,6 @@ export class EventosComponent implements OnInit {
       this.bodyDeletarEvento = `Tem certeza que deseja excluir o evento: ${evento.tema}, código: ${evento.id}`;
     }
 
-    // excluirEvento(evento: Evento, template: any) {
-    //   this.openModal(template);
-    //   this.evento = evento;
-    //   this.bodyDeletarEvento = `Tem certeza que deseja excluir o Evento: ${evento.tema}, Código: ${evento.id}`;
-    // }
-
     confirmeDelete(template: any) {
       this.eventoService.deleteEvento(this.evento.id).subscribe(
         () => {
@@ -82,20 +76,7 @@ export class EventosComponent implements OnInit {
           console.log(error);
         }
       );
-    } 
-    
-    // confirmeDelete(template: any) {
-    //   this.eventoService.deleteEvento(this.evento.id).subscribe(
-    //     () => {
-    //       template.hide();
-    //       this.getEventos();
-    //       this.toastr.success('Deletado com Sucesso');
-    //     }, error => {
-    //       this.toastr.error('Erro ao tentar Deletar');
-    //       console.log(error);
-    //     }
-    //   );
-    // }
+    }
 
   // abre a tela modal
   openModal(template: any) {
